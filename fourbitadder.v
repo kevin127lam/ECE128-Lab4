@@ -126,3 +126,14 @@ endcase
 end
 endmodule
 ////////////////////////////
+module final(A, B, sel, Display);
+    input [3:0] A, B;
+    input sel;
+    wire Cout;
+    output [6:0] Display;
+    wire [3:0] Sum, out;
+    
+	fourbitadder add0(.A(A), .B(B), .sum(Sum), .Cout(Cout));
+	mux m0(.I1(Cout), .I2(Sum), .s(sel), .out(out));
+	SevenSegment seg0(.Sum(out), .Display(Display));
+endmodule
